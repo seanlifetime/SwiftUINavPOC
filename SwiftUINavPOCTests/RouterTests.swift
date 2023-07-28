@@ -89,6 +89,8 @@ final class RouterTests: XCTestCase {
         XCTAssertEqual(routeActions, [])
     }
 
+    // MARK: - Helpers
+
     private func setUpListening() {
         router.$routes
             .sink { [weak self] in self?.routeActions = $0 }
