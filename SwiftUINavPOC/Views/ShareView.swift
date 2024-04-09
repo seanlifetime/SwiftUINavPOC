@@ -23,7 +23,7 @@ struct ShareView: View {
                 .foregroundColor(.purple)
 
             Button {
-                router.navigate(to: .listView)
+                router.navigate(to: Route.listView)
             } label: {
                 Text("Navigate to list")
             }

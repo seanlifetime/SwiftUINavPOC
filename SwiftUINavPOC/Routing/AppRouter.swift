@@ -24,6 +24,15 @@ extension View {
         }
     }
 
+    func withUserProfileRouter() -> some View {
+        navigationDestination(for: UserProfilRoute.self) { destination in
+            switch destination {
+            case .userHomePage:
+                Text("Hello user home page")
+            }
+        }
+    }
+
     func withSheetRouter(_ desitnation: Binding<SheetRoute?>) -> some View {
         sheet(item: desitnation) { sheetToPresent in
             switch sheetToPresent {

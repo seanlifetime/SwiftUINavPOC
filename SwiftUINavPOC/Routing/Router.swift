@@ -20,6 +20,14 @@ enum Route: Hashable {
     }
 }
 
+enum UserProfilRoute: Hashable {
+    case userHomePage
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.hashValue)
+    }
+}
+
 // MARK: - Sheet routes
 
 enum SheetRoute: Identifiable {
@@ -47,7 +55,7 @@ enum FullSheetRoute: Identifiable {
 // MARK: - Router
 
 class Router: ObservableObject {
-    @Published var routes = [Route]() {
+    @Published var routes = NavigationPath() {
         didSet {
             print("SWG: [\(routes.count)] -> \(routes)")
         }
@@ -57,13 +65,16 @@ class Router: ObservableObject {
 
     // MARK: - Navigation helpers
 
-    func navigate(to screen: Route) { routes.append(screen) }
+    func navigate<V>(to screen: V) where V: Hashable { routes.append(screen) }
     
-    func goBack() { _ = routes.popLast() }
+    func goBack() { routes.removeLast() }
 
-    func goBack(_ k: Int) { routes = routes.dropLast(k) }
+    func goBack(_ k: Int) {
+        guard routes.count - k >= 0, k >= 0 else { return }
+        routes.removeLast(k)
+    }
 
-    func goToRoot() { routes = [] }
+    func goToRoot() { routes = NavigationPath() }
 
     // MARK: - Sheet helpers
 

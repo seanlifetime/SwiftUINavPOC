@@ -9,7 +9,7 @@ import SwiftUI
 
 class ViewModelFTW: Router {
     func showShareView() {
-        navigate(to: .shareView(text: "WOW MAN"))
+        navigate(to: Route.shareView(text: "WOW MAN"))
     }
 
     func presentSheet() {
@@ -18,7 +18,10 @@ class ViewModelFTW: Router {
 }
 
 class ViewModel {
-    func showShareView() -> Route { .shareView(text: "WOW MAN") }
+    func showShareView() -> Route {
+
+        return .shareView(text: "WOW MAN")
+    }
 
     func presentSheet() -> SheetRoute { .someSheet }
 

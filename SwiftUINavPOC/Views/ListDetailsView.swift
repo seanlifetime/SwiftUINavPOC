@@ -9,8 +9,14 @@ import SwiftUI
 
 struct ListDetailView: View {
     let text: String
+//    let vm: blah
+
 
     @EnvironmentObject private var router: Router
+
+//    init() {
+//        vm = blah(router: router)
+//    }
 
     var body: some View {
         VStack(spacing: 16.0) {
@@ -39,5 +45,13 @@ struct ListDetailView: View {
             .controlSize(.large)
         }
         .navigationTitle(text)
+    }
+}
+
+class blah {
+    let router: Router
+
+    init(router: Router) {
+        self.router = router
     }
 }
